@@ -20,7 +20,7 @@ class PNN:
         summation = np.zeros((pattern.shape[0], self.class_index.shape[0]))
         for i, index in enumerate(self.class_index):
             summation[:, i] = pattern[:, index].sum(axis=1)
-        return summation / summation.sum(axis=1, keepdims=True)
+        return summation / self.class_index.sum(axis=1)
 
     def output_layer(self, summation):
         return np.argmax(summation, axis=1)

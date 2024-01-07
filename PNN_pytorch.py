@@ -27,7 +27,7 @@ class SummationLayer(nn.Module):
         summation = torch.zeros((pattern.shape[0], self.class_index.shape[0]))
         for i, index in enumerate(self.class_index):
             summation[:, i] = pattern[:, index].sum(dim=1)
-        return summation / summation.sum(dim=1, keepdim=True)
+        return summation / self.class_index.sum(dim=1)
 
 
 class OutputLayer(nn.Module):
